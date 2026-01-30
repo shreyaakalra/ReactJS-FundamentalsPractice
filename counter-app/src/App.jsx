@@ -1,4 +1,7 @@
 import './App.css'
+import { Heading } from './components/heading.jsx'
+import { Counter } from './components/counter.jsx'
+import { Button } from './components/button.jsx'
 import { useState } from "react"
 
 function App() {
@@ -6,33 +9,41 @@ function App() {
   const[count, setCount] = useState(0);
 
   function incrementClick(){
-    setCount(count+1);
+    setCount(count+1)
   }
 
   function decrementClick(){
-    setCount(count-1);
+    setCount(count-1)
   }
 
   function resetClick(){
-    setCount(0);
+    setCount(0)
   }
+
 
   return (
     <>
-      <h1>COUNTER APP</h1>
-      <p>counter : {count}</p>
+      <Heading />
+      <Counter 
+        count={count}
+      />
       <div>
-        <button onClick={incrementClick}>
-          INCREMENT
-        </button>
-        <button onClick={decrementClick}>
-          DECREMENT
-        </button>
-        <button onClick={resetClick}>
-          RESET
-        </button>
-      </div>
+        <Button 
+          title="INCREMENT"
+          task={incrementClick}
+        />
+        <Button 
+          title="DECREMENT"
+          task={decrementClick}
+          isOffline={count===0}
+        />
+        <Button 
+          title="RESET"
+          task={resetClick}
+        />
         
+      </div>
+      
     </>
   )
 }
