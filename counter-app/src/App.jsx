@@ -38,7 +38,7 @@ function App() {
           isOffline={count===0}
         />
         <Button 
-          title="RESET"
+          title="Reset"
           task={resetClick}
         />
         
