@@ -51,6 +51,14 @@ function App() {
     return true;
   })
 
+  const clearCompleted = () => {
+    const clearTodo = todo.filter((item) => {
+      return !item.status;
+    })
+
+    setTodo(clearTodo);
+  }
+
 
 
   
@@ -80,6 +88,9 @@ function App() {
         </button>
         <button onClick={() => setFilter("COMPLETED")} style={{marginRight: "20px"}}>
           COMPLETED
+        </button>
+        <button onClick={clearCompleted} style={{marginRight: "20px"}}>
+          CLEAR COMPLETED
         </button>
       </div>
       <div>
