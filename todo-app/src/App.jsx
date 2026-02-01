@@ -65,50 +65,62 @@ function App() {
   return (
     <div>
       <h1>TO-DO LIST</h1>
+
       <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-      <input 
-        type="text"
-        style={{width: 600}}
-        value={text}
-        onChange={(e)=>setText(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="enter a task..."
-      />
-      <button onClick={addTodo}>
-        ADD
-      </button>
+        <input 
+          type="text"
+          style={{width: 600}}
+          value={text}
+          onChange={(e)=>setText(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="enter a task..."
+        />
+        <button onClick={addTodo}>
+          ADD
+        </button>
       </div>
+
       <br></br>
+
       <div>
         <button onClick={() => setFilter("ALL")} style={{marginRight: "20px"}}>
           ALL
         </button>
+
         <button onClick={() => setFilter("ACTIVE")} style={{marginRight: "20px"}}>
           ACTIVE
         </button>
+
         <button onClick={() => setFilter("COMPLETED")} style={{marginRight: "20px"}}>
           COMPLETED
         </button>
+
         <button onClick={clearCompleted} style={{marginRight: "20px"}}>
           CLEAR COMPLETED
         </button>
       </div>
+
       <div>
+        
         {filteredTodo.map((item)=>(
           <div key={item.id} style={{display: "flex", alignItems: "center", justifyContent: "space-between", }}>
-          <div style={{textDecoration: item.status ? "line-through" : "none"}}>
-            {item.title}
-          </div>
-          <div>
-          <button onClick={() => doneTask(item.id)} disabled={item.status}>
-            done
-          </button>
-          <button onClick={() => deleteTask(item.id)}>
-            DELETE
-          </button>
-          </div>
+
+            <div style={{textDecoration: item.status ? "line-through" : "none"}}>
+              {item.title}
+            </div>
+
+            <div>
+            <button onClick={() => doneTask(item.id)} disabled={item.status}>
+              done
+            </button>
+            <button onClick={() => deleteTask(item.id)}>
+              DELETE
+            </button>
+            </div>
+
           </div>
         ))}
+        
         <br></br>
       </div>
     </div>
