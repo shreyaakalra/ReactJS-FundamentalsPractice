@@ -5,9 +5,11 @@ function App() {
 
   const [todo, setTodo] = useState([]);
   const [text, setText] = useState("")
-  // const [status, setStatus] = useState(false)
+  const [filter, setFilter] = useState("ALL");
 
   const addTodo = () => {
+    if(text==="") return;
+
     setTodo([
       ...todo,
       {
@@ -35,6 +37,22 @@ function App() {
     setTodo(updatedTodos);
   }
 
+  const deleteTask = (id) => {
+    const remainingTodos = todo.filter((item) => {
+      return item.id !== id;
+    });
+
+    setTodo(remainingTodos);
+  }
+
+  const filteredTodo = todo.filter((item) => {
+    if(filter==="ACTIVE") return !item.status;
+    if(filter==="COMPLETED") return item.status;
+    return true;
+  })
+
+
+
   
   return (
     <div>
@@ -54,14 +72,30 @@ function App() {
       </div>
       <br></br>
       <div>
-        {todo.map((item)=>(
+        <button onClick={() => setFilter("ALL")} style={{marginRight: "20px"}}>
+          ALL
+        </button>
+        <button onClick={() => setFilter("ACTIVE")} style={{marginRight: "20px"}}>
+          ACTIVE
+        </button>
+        <button onClick={() => setFilter("COMPLETED")} style={{marginRight: "20px"}}>
+          COMPLETED
+        </button>
+      </div>
+      <div>
+        {filteredTodo.map((item)=>(
           <div key={item.id} style={{display: "flex", alignItems: "center", justifyContent: "space-between", }}>
           <div style={{textDecoration: item.status ? "line-through" : "none"}}>
             {item.title}
           </div>
+          <div>
           <button onClick={() => doneTask(item.id)} disabled={item.status}>
             done
           </button>
+          <button onClick={() => deleteTask(item.id)}>
+            DELETE
+          </button>
+          </div>
           </div>
         ))}
         <br></br>
