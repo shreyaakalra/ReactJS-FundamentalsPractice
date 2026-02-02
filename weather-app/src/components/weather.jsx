@@ -21,7 +21,7 @@ export function Weather(){
 
             const geoData = await geoRes.json();
 
-            if(!geoData) throw new Error("city found")
+            if(!geoData) throw new Error("city not found")
 
             const { lat, lon, name, country, state } = geoData[0];
 

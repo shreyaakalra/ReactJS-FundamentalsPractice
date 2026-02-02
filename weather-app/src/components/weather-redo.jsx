@@ -6,8 +6,7 @@ const API_KEY = "f82445198f4f38383d59e0d629ae4029"
 export function WeatherRedo (){
 
     const [city, setCity] = useState("");
-    const [weather, setWeather] = useState({});
-    const [showData, setShowData] = useState(false);
+    const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -22,11 +21,13 @@ export function WeatherRedo (){
 
         const geoData = await geoRes.json();
 
-        if(!geoData || geoData.length === 0) return;
+        if(!geoData || geoData.length === 0) throw new Error("City not found");
 
         const { lat, lon, name, country, state } = geoData[0];
 
         const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+
+        if(!weatherRes.ok) throw new Error("Weather data unavailable");
 
         const data = await weatherRes.json();
 
@@ -41,12 +42,10 @@ export function WeatherRedo (){
             windSpeed: speed
         })
 
-        setShowData(true);
         setError("");
 
         } catch (error) {
             setError(error.message);
-            setLoading(false);
         } finally {
             setLoading(false);
         }
@@ -76,7 +75,7 @@ export function WeatherRedo (){
             </button>
             </div>
             {error && (<p>Error: {error}</p>)}
-            {showData && (
+            {weather && (
                 <div>
                     <p><strong>Name: </strong>{weather.location}</p>
                     <p><strong>Temperature: </strong> {weather.temperature}°C</p>
