@@ -1,5 +1,6 @@
 import './App.css'
 import { Weather } from './components/weather'
+import { WeatherRedo} from './components/weather-redo'
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <>
-    <Weather />
+    <WeatherRedo />
     </>
   )
 }
