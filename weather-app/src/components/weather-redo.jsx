@@ -75,7 +75,7 @@ export function WeatherRedo (){
             </button>
             </div>
             {error && (<p>Error: {error}</p>)}
-            {weather && (
+            {weather && !error && (
                 <div>
                     <p><strong>Name: </strong>{weather.location}</p>
                     <p><strong>Temperature: </strong> {weather.temperature}°C</p>
