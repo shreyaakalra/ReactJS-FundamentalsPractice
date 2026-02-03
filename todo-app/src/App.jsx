@@ -64,7 +64,7 @@ function App() {
   
   return (
     <div className="min-h-screen flex flex-col items-center ">
-      <h1 className="text-8xl m-8">
+      <h1 className="text-8xl m-8 ">
         TO-DO LIST
       </h1>
 
@@ -84,7 +84,7 @@ function App() {
 
       <br></br>
 
-      <div className="flex flex-row w-full justify-center p-1 gap-10">
+      <div className="flex flex-row w-full justify-center  gap-10">
 
         <button onClick={() => setFilter("ALL")} className="px-4 py-2 rounded-md bg-black text-white hover:outline-purple-500 outline-2">
           ALL
@@ -107,17 +107,20 @@ function App() {
       <div>
         
         {filteredTodo.map((item)=>(
-          <div key={item.id} style={{display: "flex", alignItems: "center", justifyContent: "space-between", }}>
 
-            <div style={{textDecoration: item.status ? "line-through" : "none"}}>
+          <div key={item.id} className="flex items-center justify-between max-w-xl p-4 mt-4 border-2 border-purple-500 rounded-lg bg-white shadow-sm w-300">
+
+            <div className={`text-lg transition-all duration-300  ${
+              item.status ? "line-through text-gray-400 opacity-60" : "text-gray-800"
+            }`}>
               {item.title}
             </div>
 
-            <div>
-            <button onClick={() => doneTask(item.id)} disabled={item.status}>
-              done
+            <div className="flex gap-4" >
+            <button onClick={() => doneTask(item.id)} disabled={item.status} className="text-green-600 font-semibold hover:text-green-700 disabled:text-gray-300 transition-colors">
+              DONE
             </button>
-            <button onClick={() => deleteTask(item.id)}>
+            <button onClick={() => deleteTask(item.id)} className="text-green-600 font-semibold hover:text-green-700 disabled:text-gray-300 transition-colors">
               DELETE
             </button>
             </div>
