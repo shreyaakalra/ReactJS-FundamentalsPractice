@@ -63,41 +63,45 @@ function App() {
 
   
   return (
-    <div>
-      <h1>TO-DO LIST</h1>
+    <div className="min-h-screen flex flex-col items-center ">
+      <h1 className="text-8xl m-8">
+        TO-DO LIST
+      </h1>
 
-      <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+      <div className="flex w-full m-4">
         <input 
           type="text"
-          style={{width: 600}}
+          className="border border-black w-7/8 mx-8 p-2"
           value={text}
           onChange={(e)=>setText(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="enter a task..."
         />
-        <button onClick={addTodo}>
+        <button onClick={addTodo} className="w-1/8 bg-black text-white mr-8">
           ADD
         </button>
       </div>
 
       <br></br>
 
-      <div>
-        <button onClick={() => setFilter("ALL")} style={{marginRight: "20px"}}>
+      <div className="flex flex-row w-full justify-center p-1 gap-10">
+
+        <button onClick={() => setFilter("ALL")} className="px-4 py-2 rounded-md bg-black text-white hover:outline-purple-500 outline-2">
           ALL
         </button>
 
-        <button onClick={() => setFilter("ACTIVE")} style={{marginRight: "20px"}}>
+        <button onClick={() => setFilter("ACTIVE")} className="px-4 py-2 rounded-md bg-black text-white hover:outline-purple-500 outline-2">
           ACTIVE
         </button>
 
-        <button onClick={() => setFilter("COMPLETED")} style={{marginRight: "20px"}}>
+        <button onClick={() => setFilter("COMPLETED")} className="px-4 py-2 rounded-md bg-black text-white hover:outline-purple-500 outline-2">
           COMPLETED
         </button>
 
-        <button onClick={clearCompleted} style={{marginRight: "20px"}}>
+        <button onClick={clearCompleted} className="px-4 py-2 rounded-md bg-black text-white hover:outline-purple-500 outline-2">
           CLEAR COMPLETED
         </button>
+
       </div>
 
       <div>
